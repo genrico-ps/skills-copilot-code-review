@@ -1,9 +1,70 @@
 .announcement-banner {
-  background-color: var(--success);
+  background: linear-gradient(135deg, #1a237e 0%, #3949ab 55%, #5c6bc0 100%);
   color: var(--primary-text);
-  text-align: center;
-  padding: 15px;
-  font-weight: bold;
+  padding: 16px 18px;
+  border-radius: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 12px 24px rgba(26, 35, 126, 0.18);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  overflow: hidden;
+  position: relative;
+}
+
+.announcement-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.16), transparent 40%);
+  pointer-events: none;
+}
+
+.announcement-banner__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.announcement-banner__eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#announcement-banner-title {
+  font-size: 1rem;
+}
+
+#announcement-banner-message {
+  font-size: 0.95rem;
+  line-height: 1.45;
+  max-width: 760px;
+}
+
+.announcement-banner__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 1;
+}
+
+.announcement-banner__meta .status-pill {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
 }
 
 
@@ -55,7 +116,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 12px;
-  background-color: var(--background);
+  background: radial-gradient(circle at top, #ffffff 0%, #edf2ff 35%, var(--background) 100%);
   font-size: 0.9rem;
 }
 
@@ -71,6 +132,14 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent);
+  pointer-events: none;
 }
 
 header h1 {
@@ -631,6 +700,9 @@ footer {
 #user-status {
   display: flex;
   align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 #user-info {
@@ -672,4 +744,225 @@ footer {
 
 #logout-button:hover {
   background-color: rgba(255, 255, 255, 0.3);
+}
+
+.secondary-button {
+  background-color: var(--border-light);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.secondary-button:hover {
+  background-color: var(--border-focus);
+}
+
+.announcement-modal-content {
+  max-width: 980px;
+  width: min(96vw, 980px);
+}
+
+.announcement-manager {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.announcement-manager-list,
+.announcement-manager-form {
+  background: linear-gradient(180deg, #ffffff, #f9fafc);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.section-header {
+  margin-bottom: 14px;
+}
+
+.section-header h3 {
+  margin-bottom: 6px;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.section-header p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.section-header--form {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.announcement-list {
+  display: grid;
+  gap: 12px;
+  max-height: 64vh;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.announcement-list-item {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.announcement-list-item.is-active {
+  border-color: rgba(46, 125, 50, 0.35);
+  background: linear-gradient(180deg, #f2fbf3, #ffffff);
+}
+
+.announcement-list-item.is-upcoming {
+  border-color: rgba(245, 124, 0, 0.25);
+}
+
+.announcement-list-item.is-expired {
+  opacity: 0.72;
+}
+
+.announcement-item-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.announcement-item-header h4 {
+  margin-bottom: 4px;
+  color: var(--primary);
+}
+
+.announcement-item-message {
+  color: var(--text-primary);
+  white-space: pre-line;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+
+.announcement-item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.status-pill.active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-pill.upcoming {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.status-pill.expired {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.announcement-item-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.announcement-item-actions button {
+  padding: 5px 10px;
+}
+
+.announcement-form {
+  display: grid;
+  gap: 12px;
+}
+
+.announcement-manager-form .form-group {
+  display: grid;
+  gap: 6px;
+}
+
+.announcement-manager-form input,
+.announcement-manager-form textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--text-primary);
+  background-color: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.announcement-manager-form input:focus,
+.announcement-manager-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(83, 75, 174, 0.12);
+}
+
+.announcement-manager-form label {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.announcement-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.form-optional {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+@media (max-width: 767px) {
+  .announcement-banner {
+    flex-direction: column;
+  }
+
+  .announcement-manager {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  #user-controls {
+    position: static;
+    margin-top: 10px;
+  }
+
+  header {
+    padding-top: 16px;
+  }
 }

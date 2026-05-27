@@ -12,14 +12,23 @@
     />
   </head>
   <body>
-    <div class="announcement-banner" lang="pt-BR">
-      📢 As inscrições para atividades estão abertas até o final do mês. Não perca sua vaga!
+    <div id="announcement-banner" class="announcement-banner" lang="pt-BR" aria-live="polite">
+      <div class="announcement-banner__content">
+        <span class="announcement-banner__eyebrow">Anúncio</span>
+        <strong id="announcement-banner-title">Carregando anúncio...</strong>
+        <span id="announcement-banner-message">Aguarde enquanto buscamos os comunicados mais recentes.</span>
+      </div>
+      <div id="announcement-banner-meta" class="announcement-banner__meta"></div>
     </div>
     <header>
       <h1>Mergington High School</h1>
       <h2>Atividades Extracurriculares</h2>
       <div id="user-controls">
         <div id="user-status">
+          <button id="announcements-button" class="icon-button hidden" aria-haspopup="dialog" aria-controls="announcement-modal">
+            <span class="user-icon">📣</span>
+            <span>Anúncios</span>
+          </button>
           <button id="login-button" class="icon-button">
             <span class="user-icon">👤</span>
             <span>Entrar</span>
@@ -134,6 +143,53 @@
           <button type="submit">Entrar</button>
         </form>
         <div id="login-message" class="hidden message"></div>
+      </div>
+    </div>
+
+    <!-- Announcement Management Modal -->
+    <div id="announcement-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="announcement-modal-title">
+      <div class="modal-content announcement-modal-content">
+        <button type="button" class="close-announcement-modal" aria-label="Fechar gerenciamento de anúncios">&times;</button>
+        <div class="announcement-manager">
+          <section class="announcement-manager-list">
+            <div class="section-header">
+              <h3 id="announcement-modal-title">Gerenciar anúncios</h3>
+              <p>Crie, edite ou remova os comunicados exibidos na página inicial.</p>
+            </div>
+            <div id="announcement-list" class="announcement-list" aria-live="polite"></div>
+          </section>
+          <section class="announcement-manager-form">
+            <div class="section-header section-header--form">
+              <h3 id="announcement-form-title">Novo anúncio</h3>
+              <button type="button" id="new-announcement-button" class="secondary-button">Novo anúncio</button>
+            </div>
+            <form id="announcement-form">
+              <input type="hidden" id="announcement-id" value="" />
+              <div class="form-group">
+                <label for="announcement-title">Título</label>
+                <input type="text" id="announcement-title" required maxlength="120" placeholder="Ex.: Reunião pedagógica" />
+              </div>
+              <div class="form-group">
+                <label for="announcement-message">Mensagem</label>
+                <textarea id="announcement-message" required maxlength="1000" rows="5" placeholder="Escreva a mensagem do anúncio"></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="announcement-start-date">Data de início <span class="form-optional">(opcional)</span></label>
+                  <input type="date" id="announcement-start-date" />
+                </div>
+                <div class="form-group">
+                  <label for="announcement-expiry-date">Data de expiração</label>
+                  <input type="date" id="announcement-expiry-date" required />
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit">Salvar anúncio</button>
+                <button type="button" id="clear-announcement-form" class="secondary-button">Limpar</button>
+              </div>
+            </form>
+          </section>
+        </div>
       </div>
     </div>
 
