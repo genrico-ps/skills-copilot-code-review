@@ -6,6 +6,8 @@ Uma aplicação FastAPI super simples que permite aos alunos visualizar e se ins
 
 - Visualizar todas as atividades extracurriculares disponíveis
 - Inscrever-se em atividades
+- Visualizar anúncios institucionais carregados do banco de dados
+- Administrar anúncios com login de professor
 
 ## Como começar
 
@@ -31,6 +33,10 @@ Uma aplicação FastAPI super simples que permite aos alunos visualizar e se ins
 | ------ | ----------------------------------------------------------------- | -------------------------------------------------------------------- |
 | GET    | `/activities`                                                     | Obtém todas as atividades com detalhes e número atual de participantes |
 | POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Inscreve-se em uma atividade                                         |
+| GET    | `/announcements`                                                  | Lista todos os anúncios cadastrados                                  |
+| POST   | `/announcements?teacher_username=professor`                       | Cria um anúncio autenticado                                          |
+| PUT    | `/announcements/{announcement_id}?teacher_username=professor`     | Atualiza um anúncio autenticado                                      |
+| DELETE | `/announcements/{announcement_id}?teacher_username=professor`     | Remove um anúncio autenticado                                        |
 
 ## Modelo de Dados
 
@@ -42,8 +48,14 @@ A aplicação usa um modelo de dados simples com identificadores significativos:
    - Número máximo de participantes permitidos
    - Lista de e-mails dos alunos inscritos
 
-2. **Alunos** - Usa o e-mail como identificador:
+3. **Alunos** - Usa o e-mail como identificador:
    - Nome
    - Série
 
-Todos os dados são armazenados em memória, o que significa que serão resetados quando o servidor for reiniciado.
+4. **Anúncios** - Usa o identificador gerado pelo MongoDB:
+   - Título
+   - Mensagem
+   - Data de início opcional
+   - Data de expiração obrigatória
+
+Os dados são persistidos no MongoDB e recebem um anúncio de exemplo na inicialização quando a coleção está vazia.

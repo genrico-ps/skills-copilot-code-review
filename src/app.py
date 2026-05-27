@@ -15,7 +15,7 @@ from .backend import routers, database
 # Initialize web host
 app = FastAPI(
     title="Mergington High School API",
-    description="API for viewing and signing up for extracurricular activities"
+    description="API for viewing and signing up for extracurricular activities and managing school announcements"
 )
 
 # Initialize database with sample data if empty
@@ -31,5 +31,8 @@ def root():
     return RedirectResponse(url="/static/index.html")
 
 # Include routers
+from .backend.routers import announcements
+
 app.include_router(routers.activities.router)
 app.include_router(routers.auth.router)
+app.include_router(announcements.router)
