@@ -1039,10 +1039,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.target === registrationModal) {
       closeRegistrationModalHandler();
     }
-
-    if (event.target === announcementModal) {
-      closeAnnouncementModalHandler();
-    }
   });
 
   // Create and show confirmation dialog
